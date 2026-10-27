@@ -89,8 +89,12 @@ class WuloPayCheckout {
       throw ArgumentError.value(callbackScheme, 'callbackScheme', 'must be your app link scheme');
     }
     final run = authenticate ??
-        ({required String url, required String callbackUrlScheme}) =>
-            FlutterWebAuth2.authenticate(url: url, callbackUrlScheme: callbackUrlScheme);
+        ({required String url, required String callbackUrlScheme}) => FlutterWebAuth2.authenticate(
+              url: url,
+              callbackUrlScheme: callbackUrlScheme,
+              // No shared cookies needed for a checkout; on iOS this also skips the "sign in" prompt.
+              options: const FlutterWebAuth2Options(preferEphemeral: true),
+            );
     try {
       return CheckoutResult.parse(await run(url: url, callbackUrlScheme: callbackScheme));
     } on PlatformException catch (e) {
