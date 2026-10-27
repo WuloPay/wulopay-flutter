@@ -1,0 +1,21 @@
+name: wulopay_checkout
+description: Open WuloPay hosted checkout from a Flutter app in the system browser sheet and get the result back by deep link.
+version: 1.0.0
+homepage: https://github.com/WuloPay/wulopay-flutter
+repository: https://github.com/WuloPay/wulopay-flutter
+issue_tracker: https://github.com/WuloPay/wulopay-flutter/issues
+topics: [payments, checkout, wulopay]
+
+environment:
+  sdk: ^3.6.0
+  flutter: ">=3.27.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_web_auth_2: ^5.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
