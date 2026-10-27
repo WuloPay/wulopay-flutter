@@ -20,6 +20,4 @@ jobs:
       - run: dart format --line-length 120 --output=none --set-exit-if-changed lib test
       - run: flutter analyze
       - run: flutter test
-      - name: Show files changed by the steps above
-        run: git status --short && git diff
       - run: dart pub publish --dry-run
