@@ -1,0 +1,27 @@
+name: Publish to pub.dev
+
+# Automated publishing (pub.dev → wulopay_checkout → Admin → Automated publishing → GitHub Actions,
+# repository WuloPay/wulopay-flutter, tag pattern v{{version}}). Push a tag such as v1.0.1 matching pubspec.yaml's
+# version; pub.dev trusts this workflow through GitHub's OIDC token, so no secrets are stored.
+on:
+  push:
+    tags: ['v[0-9]+.[0-9]+.[0-9]+*']
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dart-lang/setup-dart@v1
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+      - run: flutter pub get
+      - run: flutter analyze
+      - run: flutter test
+      - run: dart pub publish --force
