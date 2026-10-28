@@ -1,5 +1,7 @@
 # wulopay_checkout
 
+[![pub package](https://img.shields.io/pub/v/wulopay_checkout.svg)](https://pub.dev/packages/wulopay_checkout)
+
 Open WuloPay hosted checkout from a Flutter app in the system browser sheet (ASWebAuthenticationSession on iOS,
 Custom Tabs on Android) and get the result back through your app link. Card details and 3-D Secure happen on
 WuloPay's secure payment page, in a trusted browser, never in a web view inside your app.
