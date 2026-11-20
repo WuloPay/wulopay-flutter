@@ -28,6 +28,14 @@ if (result.status == CheckoutStatus.paid) {
 `result.status` (`paid`, `cancelled`, `expired`, `dismissed`, `unknown`) is what the payment page reported, for
 display. Mark orders paid on your server, from the `checkout.session.completed` webhook or by retrieving the session.
 
+## Saved cards
+
+Saving a card and paying with a saved card work the same way. Your backend creates a session with
+`mode: "save_card"` (the bank checks the card and nothing is charged), or calls
+`POST /Wallet/Customers/{customerReference}/Cards/{cardId}/Payments` to pay with a saved card, and returns the `url`.
+Open it exactly like a payment: the shopper agrees to save the card, or sees their saved card and confirms with 3-D
+Secure, and the result is reported as paid. Card numbers never reach your app or your backend.
+
 ## Platform set-up
 
 This package uses [flutter_web_auth_2](https://pub.dev/packages/flutter_web_auth_2). On **Android**, add its callback
